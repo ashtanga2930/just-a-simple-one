@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Supplies - Professional Services & Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://placehold.co/1200x600/3498db/ffffff?text=Generic+Supplies');
+            background-size: cover;
+            background-position: center;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Custom styles for message box */
+        .message-box {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .message-box.success {
+            background-color: #22c55e; /* Tailwind green-500 */
+            color: white;
+        }
+        .message-box.error {
+            background-color: #ef4444; /* Tailwind red-500 */
+            color: white;
+        }
+        .message-box.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Loading spinner */
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-600">Generic Supplies</a>
+            <div class="hidden md:flex space-x-4">
+                <a href="#home" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md">Home</a>
+                <a href="#services" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md">Services/Products</a>
+                <a href="#ai-tips" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md">AI Assistant</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md">About Us</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="#home" class="block text-gray-600 hover:text-blue-600 px-4 py-2">Home</a>
+            <a href="#services" class="block text-gray-600 hover:text-blue-600 px-4 py-2">Services/Products</a>
+            <a href="#ai-tips" class="block text-gray-600 hover:text-blue-600 px-4 py-2">AI Assistant</a>
+            <a href="#about" class="block text-gray-600 hover:text-blue-600 px-4 py-2">About Us</a>
+            <a href="#contact" class="block text-gray-600 hover:text-blue-600 px-4 py-2">Contact</a>
+        </div>
+    </header>
+
+    <section id="home" class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Your Trusted Source for Quality Supplies</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">Reliable, efficient, and affordable solutions for all your supply needs.</p>
+            <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300">Get a Free Quote / Browse Products</a>
+        </div>
+    </section>
+
+    <section id="services" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Our Offerings</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-lg service-card transition duration-300">
+                    <img src="https://placehold.co/100x100/3498db/ffffff?text=Product1&fontsize=12" alt="Product/Service 1 Icon" class="mx-auto mb-6 h-20 w-20 rounded-full object-cover">
+                    <h3 class="text-xl font-semibold mb-3 text-blue-600">Supply Category 1</h3>
+                    <p class="text-gray-600">Description of the first category of products or services offered by Generic Supplies. Highlighting key benefits.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg service-card transition duration-300">
+                    <img src="https://placehold.co/100x100/2ecc71/ffffff?text=Product2&fontsize=12" alt="Product/Service 2 Icon" class="mx-auto mb-6 h-20 w-20 rounded-full object-cover">
+                    <h3 class="text-xl font-semibold mb-3 text-blue-600">Supply Category 2</h3>
+                    <p class="text-gray-600">Description of the second category. Emphasize quality, reliability, or unique selling points of these supplies.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg service-card transition duration-300">
+                    <img src="https://placehold.co/100x100/e74c3c/ffffff?text=Service3&fontsize=12" alt="Product/Service 3 Icon" class="mx-auto mb-6 h-20 w-20 rounded-full object-cover">
+                    <h3 class="text-xl font-semibold mb-3 text-blue-600">Consultation & Support</h3>
+                    <p class="text-gray-600">Beyond products, we offer expert advice and support to help you choose the right supplies for your specific needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ai-tips" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">✨ Ask Our AI Assistant</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-xl mx-auto">Have a question about our supplies, their uses, or general advice? Get quick answers from our AI assistant!</p>
+            <div class="max-w-xl mx-auto bg-gray-50 p-6 md:p-8 rounded-lg shadow-lg">
+                <div class="mb-4">
+                    <label for="supplyQuestion" class="block text-sm font-medium text-gray-700 mb-1">Ask about a supply or problem:</label>
+                    <input type="text" id="supplyQuestion" name="supplyQuestion" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="e.g., 'best type of X for Y purpose', 'how to maintain Z'">
+                </div>
+                <button id="getAiTipsButton" class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                    <span class="mr-2">Get Advice</span>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1.373a1 1 0 00.707.95l.053.018a3.001 3.001 0 012.43 3.627l-.28.838a1 1 0 00.95.707H16a1 1 0 110 2h-1.13a1 1 0 00-.95.707l-.28.838a3.001 3.001 0 01-2.43 3.627l-.053.018a1 1 0 00-.707.95V17a1 1 0 11-2 0v-1.373a1 1 0 00-.707-.95l-.053-.018a3.001 3.001 0 01-2.43-3.627l.28-.838a1 1 0 00-.95-.707H4a1 1 0 110-2h1.13a1 1 0 00.95-.707l.28-.838a3.001 3.001 0 012.43-3.627l.053-.018A1 1 0 009 4.373V3a1 1 0 011-1zm-3.293 9.293a1 1 0 010-1.414L8.121 8.464a1 1 0 011.414 0l1.414 1.415a1 1 0 010 1.414l-1.414 1.414a1 1 0 01-1.414 0L6.707 11.293zM10 16a1 1 0 100-2 1 1 0 000 2zM4 9a1 1 0 100-2 1 1 0 000 2zm12 0a1 1 0 100-2 1 1 0 000 2zM7.293 5.707a1 1 0 010-1.414l1.414-1.414a1 1 0 111.414 1.414L8.707 5.707a1 1 0 01-1.414 0zM12.707 5.707a1 1 0 011.414-1.414l1.414 1.414a1 1 0 11-1.414 1.414L12.707 5.707z" clip-rule="evenodd"></path></svg>
+                </button>
+                <div id="aiTipsLoader" class="loader hidden mt-4"></div>
+                <div id="aiTipsResult" class="mt-6 p-4 bg-white rounded-lg shadow hidden prose max-w-none">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 bg-gray-100"> 
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
+                    <img src="https://placehold.co/500x350/9b59b6/ffffff?text=Our+Team&fontsize=16" alt="Generic Supplies Team" class="rounded-lg shadow-xl w-full h-auto object-cover">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">About Generic Supplies</h2>
+                    <p class="text-gray-600 mb-4">
+                        Welcome to Generic Supplies! We are a dedicated team passionate about providing top-notch products and services. Our mission is to be your reliable partner for all your supply needs, ensuring quality and customer satisfaction.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        With extensive experience in sourcing and distribution, we understand the importance of dependable supplies for your home, business, or projects. We focus on quality materials and efficient service to deliver exceptional value.
+                    </p>
+                    <p class="text-gray-600">
+                        Customer satisfaction is our priority. We pride ourselves on our reliability, professionalism, and attention to detail. Trust Generic Supplies for quality and dependability.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Get In Touch</h2>
+            <div class="max-w-3xl mx-auto bg-white text-gray-800 p-8 rounded-lg shadow-2xl">
+                <form id="contactForm">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="you@example.com">
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number (Optional)</label>
+                        <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="+1 (555) 123-4567">
+                    </div>
+                    <div class="mb-6">
+                        <label for="inquiry_type" class="block text-sm font-medium text-gray-700 mb-1">Inquiry Type</label>
+                        <select id="inquiry_type" name="inquiry_type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                            <option value="product_info">Product Information</option>
+                            <option value="quote_request">Quote Request</option>
+                            <option value="support">Support</option>
+                            <option value="general">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Briefly describe your needs..."></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300 w-full md:w-auto">Send Message</button>
+                    </div>
+                </form>
+                <div class="mt-10 text-center">
+                    <p class="text-lg font-medium mb-2">Or contact us directly:</p>
+                    <p class="text-gray-600">Email: <a href="mailto:info@genericsupplies.com" class="text-blue-600 hover:underline">info@genericsupplies.com</a></p>
+                    <p class="text-gray-600">Phone: <a href="tel:+1234567890" class="text-blue-600 hover:underline">+1 (234) 567-890</a> (Replace with actual number)</p>
+                     <p class="text-gray-600">Address: 123 Supply Rd, Your City, ST 12345 (Replace with actual address)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-gray-300 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p>&copy; <span id="currentYear"></span> Generic Supplies. All Rights Reserved.</p>
+            <p class="text-sm mt-1">Website designed with care.</p>
+        </div>
+    </footer>
+
+    <div id="messageBox" class="message-box"></div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        // const messageBox = document.getElementById('messageBox'); // Already declared globally or ensure it is
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const messageText = document.getElementById('message').value.trim(); 
+
+            if (!name || !email || !messageText) {
+                showMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+            console.log('Form submitted with:', {
+                name: name,
+                email: email,
+                phone: document.getElementById('phone').value.trim(),
+                inquiry_type: document.getElementById('inquiry_type').value, // Changed from service_type
+                message: messageText
+            });
+            showMessage('Message sent successfully! (Demo)', 'success');
+            contactForm.reset();
+        });
+        
+        // Function to show messages (like alerts, but styled)
+        function showMessage(messageContent, type = 'success') { 
+            const msgBox = document.getElementById('messageBox'); 
+            msgBox.textContent = messageContent;
+            msgBox.className = `message-box ${type} show`; 
+
+            setTimeout(() => {
+                msgBox.classList.remove('show');
+            }, 3000);
+        }
+
+        // Placeholder image error handling
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('img[src^="https://placehold.co"]');
+            images.forEach(img => {
+                img.onerror = function() {
+                    this.alt = "Image placeholder failed to load";
+                    this.style.backgroundColor = "#cccccc";
+                    const parent = this.parentNode;
+                    if (parent && !parent.querySelector('.placeholder-error-text')) { 
+                        const errorText = document.createElement('p');
+                        errorText.textContent = 'Image unavailable';
+                        errorText.style.textAlign = 'center';
+                        errorText.style.fontSize = '12px';
+                        errorText.classList.add('placeholder-error-text'); 
+                        parent.insertBefore(errorText, this.nextSibling);
+                    }
+                };
+            });
+        });
+
+        // --- AI Assistant Feature ---
+        const getAiTipsButton = document.getElementById('getAiTipsButton');
+        const supplyQuestionInput = document.getElementById('supplyQuestion'); // Changed ID
+        const aiTipsResultDiv = document.getElementById('aiTipsResult');
+        const aiTipsLoader = document.getElementById('aiTipsLoader');
+
+        getAiTipsButton.addEventListener('click', async () => {
+            const question = supplyQuestionInput.value.trim(); // Changed variable name
+            if (!question) {
+                showMessage('Please ask a question about our supplies or a problem.', 'error'); // Updated message
+                return;
+            }
+
+            aiTipsResultDiv.classList.add('hidden');
+            aiTipsResultDiv.innerHTML = ''; 
+            aiTipsLoader.classList.remove('hidden');
+            getAiTipsButton.disabled = true;
+
+            // Updated prompt for "Generic Supplies"
+            const prompt = `As an AI assistant for "Generic Supplies", provide concise, helpful information or advice regarding the following question about supplies or a related problem: "${question}". Focus on practical advice. If it's too complex, suggest contacting us directly for expert consultation. Format the response clearly.`;
+
+            try {
+                let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // API key will be provided by the environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Gemini API Error:', errorData);
+                    throw new Error(`API request failed with status ${response.status}. Check console for details.`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    let text = result.candidates[0].content.parts[0].text;
+                    text = text.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+                    text = text.replace(/\* /g, '&#8226; ').replace(/^- /g, '&#8226; '); 
+                    aiTipsResultDiv.innerHTML = `<p>${text}</p>`; 
+                    aiTipsResultDiv.classList.remove('hidden');
+                } else {
+                    console.error('Unexpected API response structure:', result);
+                    throw new Error('Could not retrieve advice from AI. Unexpected response format.');
+                }
+
+            } catch (error) {
+                console.error('Error fetching AI advice:', error);
+                aiTipsResultDiv.innerHTML = `<p class="text-red-500">Sorry, we couldn't fetch advice at the moment. Error: ${error.message}</p>`;
+                aiTipsResultDiv.classList.remove('hidden');
+            } finally {
+                aiTipsLoader.classList.add('hidden');
+                getAiTipsButton.disabled = false;
+            }
+        });
+
+    </script>
+
+</body>
+</html>
